@@ -9,13 +9,14 @@
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
       
       :root {
-        --bg-dark: #0B0F19;
+        --bg-color: #F4F9FF; /* Light blue background from user image */
+        --accent-blue: #1D72FE; /* Get Started button blue from user image */
       }
 
       body {
         font-family: 'Inter', sans-serif;
-        background-color: var(--bg-dark);
-        color: #ffffff;
+        background-color: var(--bg-color);
+        color: #1A202C;
         margin: 0;
         overflow-x: hidden;
       }
@@ -24,31 +25,46 @@
         font-family: 'Playfair Display', serif;
       }
 
-      .nebula-bg {
-        background: radial-gradient(circle at 50% 50%, rgba(13, 25, 48, 0.8) 0%, rgba(11, 15, 25, 1) 100%),
-                    url('https://www.transparenttextures.com/patterns/stardust.png');
-        background-attachment: fixed;
-      }
-
       .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
       }
 
       .glass-card:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #ffffff;
+        border: 1px solid rgba(29, 114, 254, 0.1);
+        box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.08);
+      }
+
+      .btn-pill {
+        background-color: var(--accent-blue);
+        color: white;
+        border-radius: 9999px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.2s ease;
+      }
+
+      .btn-pill:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(29, 114, 254, 0.3);
+      }
+
+      .progress-bar-fill {
+        background-color: var(--accent-blue);
       }
 
       ::-webkit-scrollbar {
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #0B0F19; 
+        background: #F4F9FF; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #2D3748; 
+        background: #CBD5E0; 
         border-radius: 10px;
       }
       
@@ -63,7 +79,7 @@
         bottom: 4px;
         width: 100%;
         height: 2px;
-        background: #3B82F6;
+        background: var(--accent-blue);
         border-radius: 2px;
       }
 
@@ -86,7 +102,7 @@
 }
 </script>
 </head>
-  <body class="nebula-bg">
+  <body class="min-h-screen">
     <div id="root"></div>
   </body>
 </html>

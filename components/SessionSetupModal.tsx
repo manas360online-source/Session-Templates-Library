@@ -9,6 +9,8 @@ interface Props {
   onClose: () => void;
 }
 
+const ACCENT_BLUE = '#1D72FE';
+
 export const SessionSetupModal: React.FC<Props> = ({ template, patients, onStart, onClose }) => {
   const [mode, setMode] = useState<'existing' | 'guest'>('existing');
   const [selectedPatientId, setSelectedPatientId] = useState('');
@@ -33,29 +35,37 @@ export const SessionSetupModal: React.FC<Props> = ({ template, patients, onStart
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
-      <div className="glass-card rounded-[32px] w-full max-w-md shadow-2xl overflow-hidden border border-gray-800">
-        <div className="bg-white/5 p-8 border-b border-gray-800 flex justify-between items-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/10 backdrop-blur-sm animate-fade-in">
+      <div className="bg-white rounded-[32px] w-full max-w-md shadow-2xl overflow-hidden border border-gray-100">
+        <div className="bg-gray-50 p-8 border-b border-gray-100 flex justify-between items-center">
             <div>
-                <h2 className="text-xl font-bold text-white">Start Session</h2>
-                <p className="text-sm text-gray-500 uppercase tracking-widest mt-1">{template.title}</p>
+                <h2 className="text-xl font-bold text-gray-900">Start Session</h2>
+                <p style={{color: ACCENT_BLUE}} className="text-sm uppercase tracking-widest mt-1 font-bold">{template.title}</p>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-all text-gray-400 hover:text-white">
+            <button onClick={onClose} className="p-2 hover:bg-gray-200 rounded-full transition-all text-gray-400 hover:text-gray-900">
                 <X size={20} />
             </button>
         </div>
 
         <div className="p-8">
-            <div className="flex gap-2 p-1 bg-white/5 rounded-xl mb-8 border border-white/5">
+            <div className="flex gap-2 p-1 bg-gray-100 rounded-xl mb-8 border border-gray-200">
                 <button 
                     onClick={() => setMode('existing')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all ${mode === 'existing' ? 'bg-[#1F2937] text-blue-400 shadow-lg' : 'text-gray-500 hover:text-gray-300'}`}
+                    style={{
+                      backgroundColor: mode === 'existing' ? 'white' : 'transparent',
+                      color: mode === 'existing' ? ACCENT_BLUE : '#A0AEC0'
+                    }}
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all ${mode === 'existing' ? 'shadow-sm' : 'hover:text-gray-600'}`}
                 >
                     Existing Patient
                 </button>
                 <button 
                     onClick={() => setMode('guest')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all ${mode === 'guest' ? 'bg-[#1F2937] text-blue-400 shadow-lg' : 'text-gray-500 hover:text-gray-300'}`}
+                    style={{
+                      backgroundColor: mode === 'guest' ? 'white' : 'transparent',
+                      color: mode === 'guest' ? ACCENT_BLUE : '#A0AEC0'
+                    }}
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all ${mode === 'guest' ? 'shadow-sm' : 'hover:text-gray-600'}`}
                 >
                     Guest
                 </button>
@@ -65,30 +75,30 @@ export const SessionSetupModal: React.FC<Props> = ({ template, patients, onStart
                 <div className="mb-8">
                     <label className="block text-xs font-bold text-gray-500 uppercase mb-3 tracking-widest ml-1">Select Patient</label>
                     <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <select 
                             value={selectedPatientId}
                             onChange={(e) => setSelectedPatientId(e.target.value)}
-                            className="w-full pl-12 pr-10 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none appearance-none text-white font-medium transition-all"
+                            className="w-full pl-12 pr-10 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:border-[#1D72FE] outline-none appearance-none text-gray-900 font-medium transition-all"
                         >
-                            <option value="" className="bg-[#0B0F19]">-- Choose Patient --</option>
+                            <option value="">-- Choose Patient --</option>
                             {patients.map(p => (
-                                <option key={p.id} value={p.id} className="bg-[#0B0F19]">{p.name}</option>
+                                <option key={p.id} value={p.id}>{p.name}</option>
                             ))}
                         </select>
-                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 pointer-events-none" size={18} />
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
                     </div>
                 </div>
             ) : (
                 <div className="mb-8">
                     <label className="block text-xs font-bold text-gray-500 uppercase mb-3 tracking-widest ml-1">Patient Name</label>
                     <div className="relative">
-                        <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                        <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                         <input 
                             type="text" 
                             value={guestName}
                             onChange={(e) => setGuestName(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none text-white font-medium transition-all"
+                            className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:border-[#1D72FE] outline-none text-gray-900 font-medium transition-all"
                             placeholder="e.g. John Doe"
                             autoFocus
                         />
@@ -98,7 +108,8 @@ export const SessionSetupModal: React.FC<Props> = ({ template, patients, onStart
 
             <button 
                 onClick={handleStart}
-                className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 flex items-center justify-center gap-3 transition-all shadow-lg shadow-blue-600/20 uppercase tracking-widest text-sm"
+                style={{backgroundColor: ACCENT_BLUE}}
+                className="w-full py-4 text-white rounded-xl font-bold hover:opacity-90 flex items-center justify-center gap-3 transition-all shadow-lg uppercase tracking-widest text-sm"
             >
                 <Play size={18} fill="currentColor" /> Begin Session
             </button>
