@@ -35,11 +35,11 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in">
-      <div className="glass-card rounded-[32px] w-full max-w-xl shadow-2xl p-8 border border-gray-800">
-        <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
-          <h2 className="text-2xl font-bold text-white">Add New Patient</h2>
-          <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition-all">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/10 backdrop-blur-sm animate-fade-in">
+      <div className="glass-card rounded-[32px] w-full max-w-xl shadow-2xl p-8 border border-gray-100 bg-white">
+        <div className="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
+          <h2 className="text-2xl font-bold text-gray-900">Add New Patient</h2>
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 hover:text-gray-900 transition-all">
             <X size={24} />
           </button>
         </div>
@@ -48,12 +48,12 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
           <div className="relative">
             <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-widest ml-1">Full Name</label>
             <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input 
                 required
                 type="text" 
                 placeholder="e.g. John Doe"
-                className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                 value={formData.name}
                 onChange={e => setFormData({...formData, name: e.target.value})}
               />
@@ -67,7 +67,7 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
                   required
                   type="number" 
                   min="0"
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                   value={formData.age}
                   onChange={e => setFormData({...formData, age: e.target.value})}
                 />
@@ -75,11 +75,11 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
              <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-widest ml-1">Diagnosis</label>
                 <div className="relative">
-                  <Clipboard className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                  <Clipboard className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                   <input 
                     type="text" 
                     placeholder="e.g. Anxiety"
-                    className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                     value={formData.diagnosis}
                     onChange={e => setFormData({...formData, diagnosis: e.target.value})}
                   />
@@ -91,12 +91,12 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
              <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-widest ml-1">Email</label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                   <input 
                     required
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
                   />
@@ -105,12 +105,12 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
              <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-widest ml-1">Phone</label>
                 <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                   <input 
                     required
                     type="tel" 
                     placeholder="(555) 123-4567"
-                    className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                     value={formData.phone}
                     onChange={e => setFormData({...formData, phone: e.target.value})}
                   />
@@ -122,23 +122,23 @@ export const AddPatientModal: React.FC<Props> = ({ onSave, onClose }) => {
              <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-widest ml-1">Next Session</label>
                 <div className="relative">
-                  <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+                  <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                   <input 
                     type="date" 
-                    className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-blue-500 outline-none transition-all text-white"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all text-gray-900"
                     value={formData.nextSession}
                     onChange={e => setFormData({...formData, nextSession: e.target.value})}
                   />
                 </div>
              </div>
              <div className="flex items-end">
-                <p className="text-[10px] text-gray-600 leading-tight p-1">Default last session set to today.</p>
+                <p className="text-[10px] text-gray-500 leading-tight p-1">Default last session set to today.</p>
              </div>
           </div>
 
-          <div className="flex justify-end gap-4 mt-8 pt-6 border-t border-gray-800">
-             <button type="button" onClick={onClose} className="px-6 py-3 text-gray-400 font-bold hover:text-white transition-colors uppercase tracking-widest text-xs">Cancel</button>
-             <button type="submit" className="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 uppercase tracking-widest text-xs">
+          <div className="flex justify-end gap-4 mt-8 pt-6 border-t border-gray-100">
+             <button type="button" onClick={onClose} className="px-6 py-3 text-gray-400 font-bold hover:text-gray-900 transition-colors uppercase tracking-widest text-xs">Cancel</button>
+             <button type="submit" className="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-lg uppercase tracking-widest text-xs">
                 <Save size={18} /> Save Patient
              </button>
           </div>

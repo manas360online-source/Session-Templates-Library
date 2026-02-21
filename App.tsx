@@ -3,11 +3,9 @@ import { Layout, Search, Plus, User, FileText, Settings, Share2, Menu, Calendar,
 import { INITIAL_TEMPLATES, MOCK_PATIENTS, MOCK_SESSIONS } from './constants';
 import { Template, Patient, SessionData } from './types';
 import { TemplateCard } from './components/TemplateCard';
-import { TemplatePreview } from './components/TemplatePreview';
 import { TemplateEditor } from './components/TemplateEditor';
 import { AddPatientModal } from './components/AddPatientModal';
 import { SessionReportModal } from './components/SessionReportModal';
-import { SessionSetupModal } from './components/SessionSetupModal';
 import { CognitiveRestructuring } from './templates/CognitiveRestructuring';
 import { BehavioralActivation } from './templates/BehavioralActivation';
 import { ExposureTherapy } from './templates/ExposureTherapy';
@@ -47,7 +45,6 @@ export default function App() {
   const [sessions, setSessions] = useState<SessionData[]>(MOCK_SESSIONS);
   const [search, setSearch] = useState('');
   
-  const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
   const [editTemplate, setEditTemplate] = useState<Template | null>(null);
   const [pendingTemplate, setPendingTemplate] = useState<Template | null>(null);
   const [activeSession, setActiveSession] = useState<Template | null>(null);
@@ -57,13 +54,8 @@ export default function App() {
   const [currentSessionPatient, setCurrentSessionPatient] = useState<{id: string | null, name: string}>({id: null, name: ''});
 
   const handleRun = (t: Template) => {
-    setPendingTemplate(t);
-    setPreviewTemplate(null);
-  };
-
-  const handleStartSession = (patientId: string | null, name: string) => {
-    setCurrentSessionPatient({ id: patientId, name });
-    setActiveSession(pendingTemplate);
+    setCurrentSessionPatient({ id: null, name: 'Guest' });
+    setActiveSession(t);
     setPendingTemplate(null);
     setView('session');
   };
@@ -90,7 +82,7 @@ export default function App() {
           <div key={t.id} className="group relative">
             <TemplateCard 
               template={t} 
-              onPreview={setPreviewTemplate}
+              onPreview={() => {}}
               onClone={() => {}}
               onRun={handleRun}
               onEdit={() => {}}
@@ -210,6 +202,12 @@ export default function App() {
 
   const TherapistProfileView = () => (
     <div className="max-w-5xl mx-auto px-6 pt-28 pb-32 animate-fade-in">
+      <button 
+        onClick={() => setView('library')}
+        className="flex items-center gap-2 text-gray-400 hover:text-gray-900 mb-8 transition-colors text-sm font-bold uppercase tracking-widest"
+      >
+        <ArrowLeft size={18} /> Back to Library
+      </button>
       <div className="glass-card rounded-[40px] overflow-hidden bg-white">
         <div style={{background: `linear-gradient(to right, ${ACCENT_BLUE}10, ${ACCENT_BLUE}20)`}} className="h-48 border-b border-gray-100 relative">
           <div className="absolute -bottom-16 left-12">
@@ -337,6 +335,12 @@ export default function App() {
       
       {view === 'history' && (
         <div className="pt-24 px-6 max-w-5xl mx-auto pb-32">
+          <button 
+            onClick={() => setView('library')}
+            className="flex items-center gap-2 text-gray-400 hover:text-gray-900 mb-8 transition-colors text-sm font-bold uppercase tracking-widest"
+          >
+            <ArrowLeft size={18} /> Back to Library
+          </button>
           <h1 className="text-3xl font-bold mb-8 text-gray-900">Past Sessions</h1>
           <div className="space-y-4">
             {sessions.map(s => (
@@ -354,6 +358,12 @@ export default function App() {
 
       {view === 'patients' && (
         <div className="pt-24 px-6 max-w-5xl mx-auto pb-32">
+          <button 
+            onClick={() => setView('library')}
+            className="flex items-center gap-2 text-gray-400 hover:text-gray-900 mb-8 transition-colors text-sm font-bold uppercase tracking-widest"
+          >
+            <ArrowLeft size={18} /> Back to Library
+          </button>
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Patients</h1>
             <button onClick={() => setIsAddPatientModalOpen(true)} className="btn-pill px-6 py-2 text-xs">ADD PATIENT</button>
@@ -399,14 +409,12 @@ export default function App() {
 
       <CrisisFooter />
 
-      {previewTemplate && <TemplatePreview template={previewTemplate} onClose={() => setPreviewTemplate(null)} onClone={() => {}} onRun={() => handleRun(previewTemplate)} />}
       {isAddPatientModalOpen && <AddPatientModal onSave={(p) => { 
         const newPatient = { ...p, id: Math.random().toString(36).substr(2, 9), status: 'Active' as const };
         setPatients([...patients, newPatient]);
         setIsAddPatientModalOpen(false);
       }} onClose={() => setIsAddPatientModalOpen(false)} />}
       {viewReportSession && <SessionReportModal session={viewReportSession} template={templates.find(t => t.id === viewReportSession.templateId)} onClose={() => setViewReportSession(null)} />}
-      {pendingTemplate && <SessionSetupModal template={pendingTemplate} patients={patients} onClose={() => setPendingTemplate(null)} onStart={handleStartSession} />}
     </div>
   );
 }

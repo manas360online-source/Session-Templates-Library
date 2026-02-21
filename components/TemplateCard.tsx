@@ -13,7 +13,7 @@ interface Props {
 
 const ACCENT_BLUE = '#1D72FE';
 
-export const TemplateCard: React.FC<Props> = ({ template, onRun }) => {
+export const TemplateCard: React.FC<Props> = ({ template, onPreview, onRun }) => {
   const getIcon = () => {
     switch(template.type) {
       case 'anxiety_management': return <Zap className="text-orange-500" size={32} />;
@@ -40,7 +40,10 @@ export const TemplateCard: React.FC<Props> = ({ template, onRun }) => {
           <Clock size={14} />
           {template.duration}
         </div>
-        <div style={{backgroundColor: `${ACCENT_BLUE}15`}} className="w-10 h-10 rounded-full group-hover:bg-[#1D72FE] transition-all flex items-center justify-center">
+        <div 
+          style={{backgroundColor: `${ACCENT_BLUE}15`}} 
+          className="w-10 h-10 rounded-full group-hover:bg-[#1D72FE] transition-all flex items-center justify-center"
+        >
           <Play size={16} style={{color: ACCENT_BLUE}} className="group-hover:text-white" fill="currentColor" />
         </div>
       </div>

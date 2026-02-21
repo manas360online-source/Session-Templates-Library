@@ -12,8 +12,8 @@ export const TemplateEditor: React.FC<Props> = ({ template, onSave, onClose }) =
   const [data, setData] = useState(template);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-       <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/10 backdrop-blur-sm">
+       <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl p-6 border border-gray-100">
           <div className="flex justify-between items-center mb-6">
              <h2 className="text-xl font-bold">{template.id ? 'Edit Template' : 'Create Template'}</h2>
              <button onClick={onClose}><X /></button>
@@ -84,7 +84,7 @@ export const TemplateEditor: React.FC<Props> = ({ template, onSave, onClose }) =
           
           <div className="mt-8 flex justify-end gap-3">
              <button onClick={onClose} className="px-4 py-2 text-gray-600 font-semibold">Cancel</button>
-             <button onClick={() => onSave(data)} className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-bold flex items-center gap-2">
+             <button onClick={() => onSave(data)} style={{backgroundColor: '#1D72FE'}} className="px-6 py-2 text-white rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all">
                 <Save size={18} /> Save Template
              </button>
           </div>
